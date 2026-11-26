@@ -1,65 +1,480 @@
 <!doctype html>
-<html lang="id">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sultan Faiz Ar Rasyid — Programmer AI, Game Server, Automation &amp; Financial</title>
-    <meta name="description" content="Portofolio 3D Sultan Faiz Ar Rasyid: AI/LLM, game server, automation, dan financial." />
+    <title>Sultan Faiz — Systems, AI &amp; Kinetic Web</title>
+    <meta
+      name="description"
+      content="Portfolio of Sultan Faiz Ar Rasyid (Zora Faiz) — AI orchestration, high-concurrency game servers, zero-trust networking, and quantitative systems."
+    />
+    <meta name="theme-color" content="#0A0B0A" />
+    <meta property="og:title" content="Sultan Faiz — Systems, AI &amp; Kinetic Web" />
+    <meta
+      property="og:description"
+      content="Interactive kinetic portfolio of Sultan Faiz Ar Rasyid."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://itsfaiz.my.id" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600&family=Syne:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <canvas id="scene3d" aria-hidden="true"></canvas>
-    <header class="nav">
-      <a class="logo" href="#hero">SFR<span>.</span></a>
-      <nav>
-        <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+    <!-- Custom Cursor (pointer: fine only) -->
+    <div class="cursor" data-cursor aria-hidden="true">
+      <div class="cursor__dot" data-cursor-dot></div>
+      <div class="cursor__ring" data-cursor-ring>
+        <span class="cursor__label" data-cursor-label></span>
+      </div>
+    </div>
+
+    <!-- Preloader -->
+    <div class="preloader" data-preloader aria-hidden="true">
+      <div class="preloader__inner">
+        <div class="preloader__top">
+          <span class="mono-tag">SULTAN FAIZ</span>
+          <span class="mono-tag">JAKARTA / ID</span>
+        </div>
+        <div class="preloader__center">
+          <span class="preloader__count" data-preloader-count>00</span>
+        </div>
+        <div class="preloader__track">
+          <div class="preloader__bar" data-preloader-bar></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top Navigation -->
+    <header class="site-header" data-header>
+      <a class="brand" href="#hero" data-magnetic>
+        <span class="brand__mark">FAIZ</span><span class="brand__dot">.</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#work" class="nav-link" data-magnetic>Work</a>
+        <a href="#craft" class="nav-link" data-magnetic>Craft</a>
+        <a href="#index" class="nav-link" data-magnetic>Index</a>
+        <a href="#contact" class="nav-link" data-magnetic>Contact</a>
       </nav>
-      <button id="charToggle" type="button" aria-label="Ganti karakter 3D">Karakter: Naga 🐉</button>
+
+      <div class="header-right">
+        <span class="live-clock mono-tag" data-jakarta-clock aria-label="Jakarta local time">JKT 00:00</span>
+        <a href="#contact" class="pill-cta" data-magnetic data-cursor-text="TALK">
+          <span class="pill-cta__dot" aria-hidden="true"></span>
+          <span>Let's Talk</span>
+        </a>
+      </div>
     </header>
 
-    <main>
-      <section id="hero" class="reveal">
-        <p class="eyebrow">Halo, saya</p>
-        <h1>Sultan Faiz<br />Ar Rasyid</h1>
-        <p class="subtitle">Programmer — AI/LLM · Game Server · Automation · Financial</p>
-        <p class="lead">Saya membangun sistem yang jalan sendiri: model AI yang dipakai nyata, server game yang stabil, otomasi yang menghemat jam kerja, dan tools finansial yang bisa dihitung.</p>
-        <div class="cta"><a href="#projects">Lihat Project →</a><a class="ghost" href="#contact">Hubungi Saya</a></div>
-        <p class="hint">Gerakkan kursor / jari — naga &amp; laba-laba 3D akan mengikuti.</p>
-      </section>
-
-      <section id="about" class="reveal">
-        <h2>About</h2>
-        <p>Saya programmer yang fokus ke hasil yang bisa diukur: latency turun, proses manual hilang, dan sistem tetap jalan saat beban naik. Saya nyaman dari prototipe cepat sampai sistem produksi — desain, kode, deploy, dan monitoring.</p>
-        <ul class="facts"><li>🎯 Fokus: AI/LLM, game server, automation, financial</li><li>⚙️ Prinsip: sederhana, terukur, mudah dirawat</li><li>🚀 Cara kerja: prototipe → uji → iterasi</li></ul>
-      </section>
-
-      <section id="skills" class="reveal">
-        <h2>Skills</h2>
-        <div class="grid">
-          <article><h3>🤖 AI / LLM</h3><p>Integrasi LLM, RAG, prompt &amp; agent, evaluasi output, dan otomasi berbasis model.</p><span class="tag">LLM · RAG · Agents</span></article>
-          <article><h3>🎮 Game Server</h3><p>Server multiplayer, sinkronisasi state, anti-cheat dasar, dan optimasi beban pemain.</p><span class="tag">Multiplayer · Netcode</span></article>
-          <article><h3>⚡ Automation</h3><p>Workflow, scraping, scheduler, dan integrasi API yang menghilangkan kerja berulang.</p><span class="tag">Workflow · API · Cron</span></article>
-          <article><h3>📈 Financial</h3><p>Dashboard, kalkulasi, backtest sederhana, dan tools pencatatan yang akurat.</p><span class="tag">Data · Dashboard</span></article>
+    <main id="smooth-content">
+      <!-- 01. HERO — Lando Norris-style WebGL Fluid Portrait Reveal -->
+      <section id="hero" class="hero" data-hero>
+        <!-- Ambient Giant Back Typography (depth layer behind portrait) -->
+        <div class="hero__backdrop" aria-hidden="true">
+          <div class="hero__wordmark hero__wordmark--back" data-hero-parallax="-0.12">
+            <span>SULTAN</span>
+          </div>
+          <div class="hero__grid-lines">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
-        <p class="note">Ikon 3D GLB: letakkan file asli di <code>/public/models/</code> (ai.glb, game.glb, automation.glb, financial.glb).</p>
-      </section>
 
-      <section id="projects" class="reveal">
-        <h2>Projects</h2>
-        <div class="grid">
-          <article><h3>Asisten AI / LLM</h3><p>Chat &amp; agent berbasis dokumen internal, dengan jawaban yang bisa ditelusur sumbernya.</p></article>
-          <article><h3>Game Server</h3><p>Server game dengan lobby, match state, dan penanganan pemain yang putus/nyambung lagi.</p></article>
-          <article><h3>Automation Suite</h3><p>Kumpulan otomasi harian: laporan otomatis, sinkronisasi data, dan notifikasi.</p></article>
-          <article><h3>Financial Tools</h3><p>Tools hitung &amp; visualisasi finansial untuk keputusan yang lebih cepat dan rapi.</p></article>
+        <!-- Centerpiece Interactive WebGL Fluid Portrait Canvas -->
+        <div class="hero__stage" data-portrait-stage data-cursor-text="REVEAL">
+          <canvas id="portrait-canvas" class="hero__canvas" aria-hidden="true"></canvas>
+          <img
+            src="/portrait.png"
+            alt="Portrait of Sultan Faiz Ar Rasyid"
+            class="hero__fallback-img"
+            width="1086"
+            height="1448"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </div>
+
+        <!-- Foreground Editorial Composition -->
+        <div class="hero__foreground">
+          <div class="hero__top-meta" data-hero-enter>
+            <span class="mono-tag">00 / SYSTEMS &amp; KINETIC WEB</span>
+            <span class="mono-tag">AVAILABLE FOR SELECT WORK</span>
+          </div>
+
+          <div class="hero__title-wrap">
+            <h1 class="hero__title" data-hero-title>
+              <span class="hero__title-line">SULTAN FAIZ</span>
+              <span class="hero__title-line hero__title-line--italic">Ar Rasyid</span>
+            </h1>
+          </div>
+
+          <div class="hero__bottom-bar" data-hero-enter>
+            <p class="hero__disciplines">
+              AI Orchestration <span class="sep">/</span> Game Clusters <span class="sep">/</span> Network &amp; Quant
+            </p>
+
+            <button
+              type="button"
+              class="hero__reveal-hint mono-tag"
+              data-portrait-pulse
+              data-magnetic
+              aria-label="Trigger portrait fluid wave reveal"
+            >
+              <span class="hint-ring" aria-hidden="true"></span>
+              <span>SWEEP OR TAP TO REVEAL</span>
+            </button>
+
+            <a href="#manifesto" class="hero__scroll-cue mono-tag" data-magnetic>
+              <span>SCROLL</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 5v14m0 0-5-5m5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
         </div>
       </section>
 
-      <section id="contact" class="reveal">
-        <h2>Contact</h2>
-        <p>Punya project AI, game server, otomasi, atau tools finansial? Ceritakan singkat masalahnya, saya balas dengan rencana &amp; langkah pertama.</p>
-        <a class="cta-link" href="mailto:hello@sultanfaiz.dev">hello@sultanfaiz.dev →</a>
+      <!-- 02. KINETIC MARQUEE + EDITORIAL BONE CONTRAST MANIFESTO -->
+      <section id="manifesto" class="manifesto-band" data-theme-light>
+        <!-- Velocity-Reactive Marquee -->
+        <div class="marquee" data-marquee aria-hidden="true">
+          <div class="marquee__track" data-marquee-track>
+            <div class="marquee__group">
+              <span>AI SYSTEMS</span><span class="marquee__dot">✦</span>
+              <span>20.0 TPS CLUSTERS</span><span class="marquee__dot">✦</span>
+              <span>WIREGUARD MESH</span><span class="marquee__dot">✦</span>
+              <span>WEBGL SHADERS</span><span class="marquee__dot">✦</span>
+              <span>QUANT TELEMETRY</span><span class="marquee__dot">✦</span>
+            </div>
+            <div class="marquee__group">
+              <span>AI SYSTEMS</span><span class="marquee__dot">✦</span>
+              <span>20.0 TPS CLUSTERS</span><span class="marquee__dot">✦</span>
+              <span>WIREGUARD MESH</span><span class="marquee__dot">✦</span>
+              <span>WEBGL SHADERS</span><span class="marquee__dot">✦</span>
+              <span>QUANT TELEMETRY</span><span class="marquee__dot">✦</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sculptural Statement (Scroll-scrubbed word illumination) -->
+        <div class="container manifesto__wrap">
+          <div class="manifesto__label mono-tag">01 / PHILOSOPHY</div>
+          <p class="manifesto__statement" data-scrub-words>
+            I engineer autonomous systems that never blink — fusing low-level Linux networking, 20 TPS game engines, multi-model AI routers, and fluid interfaces built with zero excess.
+          </p>
+          <div class="manifesto__stats" data-story-section>
+            <div class="stat-item" data-reveal-item>
+              <span class="stat-item__value">20.0</span>
+              <span class="stat-item__label mono-tag">CONSTANT TPS</span>
+            </div>
+            <div class="stat-item" data-reveal-item>
+              <span class="stat-item__value">&lt;250ms</span>
+              <span class="stat-item__label mono-tag">LLM FAILOVER</span>
+            </div>
+            <div class="stat-item" data-reveal-item>
+              <span class="stat-item__value">99.98%</span>
+              <span class="stat-item__label mono-tag">CLUSTER UPTIME</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03. SELECTED WORKS — Sticky Depth Card Stack -->
+      <section id="work" class="works-section">
+        <div class="container">
+          <div class="section-head" data-story-section>
+            <span class="mono-tag" data-reveal-item>02 / SELECTED WORKS</span>
+            <h2 class="section-title" data-split-reveal>Built to Run <span class="serif-italic">in Production.</span></h2>
+          </div>
+
+          <div class="work-stack" data-sticky-stack>
+            <!-- Card 01 -->
+            <article class="work-card" data-stack-card data-cursor-text="OPEN">
+              <div class="work-card__media">
+                <img
+                  src="/works/work-anime-engine.jpg"
+                  alt="Abstract translucent kinetic wireframe 3D figure for Web Anime Engine"
+                  loading="lazy"
+                  decoding="async"
+                  data-card-parallax
+                />
+                <span class="work-card__index mono-tag">01 / 04</span>
+              </div>
+              <div class="work-card__body">
+                <div class="work-card__meta mono-tag">
+                  <span>3D ENGINE &amp; MOCAP</span>
+                  <span>2026</span>
+                </div>
+                <h3 class="work-card__title">Web Anime Engine</h3>
+                <p class="work-card__desc">Browser-native 3D studio with real-time camera motion capture and custom shader pipelines.</p>
+                <div class="work-card__footer">
+                  <div class="work-card__tags mono-tag">
+                    <span>Three.js</span>
+                    <span>WebGL</span>
+                    <span>Mocap</span>
+                  </div>
+                  <a
+                    href="https://3d.itsfaiz.my.id"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="work-card__link"
+                    data-magnetic
+                  >
+                    <span>Launch</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M7 17 17 7m0 0H8m9 0v9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 02 -->
+            <article class="work-card" data-stack-card data-cursor-text="OPEN">
+              <div class="work-card__media">
+                <img
+                  src="/works/work-zoraa-network.jpg"
+                  alt="Luminous neural glass nodes sculpture for Zoraa Living Network"
+                  loading="lazy"
+                  decoding="async"
+                  data-card-parallax
+                />
+                <span class="work-card__index mono-tag">02 / 04</span>
+              </div>
+              <div class="work-card__body">
+                <div class="work-card__meta mono-tag">
+                  <span>AUTONOMOUS AI</span>
+                  <span>2026</span>
+                </div>
+                <h3 class="work-card__title">Zoraa Living Network</h3>
+                <p class="work-card__desc">Multi-provider LLM router and autonomous agent runtime with sub-250ms failover.</p>
+                <div class="work-card__footer">
+                  <div class="work-card__tags mono-tag">
+                    <span>FastAPI</span>
+                    <span>Node.js</span>
+                    <span>SQLite WAL</span>
+                  </div>
+                  <a
+                    href="https://zoraa.itsfaiz.my.id"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="work-card__link"
+                    data-magnetic
+                  >
+                    <span>Explore</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M7 17 17 7m0 0H8m9 0v9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 03 -->
+            <article class="work-card" data-stack-card data-cursor-text="GITHUB">
+              <div class="work-card__media">
+                <img
+                  src="/works/work-game-cluster.jpg"
+                  alt="Precision obsidian geometric monolith cubes lattice for Game Cluster"
+                  loading="lazy"
+                  decoding="async"
+                  data-card-parallax
+                />
+                <span class="work-card__index mono-tag">03 / 04</span>
+              </div>
+              <div class="work-card__body">
+                <div class="work-card__meta mono-tag">
+                  <span>GAME INFRASTRUCTURE</span>
+                  <span>2025</span>
+                </div>
+                <h3 class="work-card__title">Minecraft 20 TPS Engine</h3>
+                <p class="work-card__desc">High-concurrency Purpur &amp; Folia clusters tuned with Aikar JVM flags, Redis, and GrimAC.</p>
+                <div class="work-card__footer">
+                  <div class="work-card__tags mono-tag">
+                    <span>Java 21</span>
+                    <span>Folia</span>
+                    <span>Redis</span>
+                  </div>
+                  <a
+                    href="https://github.com/zorafaizz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="work-card__link"
+                    data-magnetic
+                  >
+                    <span>Architecture</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M7 17 17 7m0 0H8m9 0v9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 04 -->
+            <article class="work-card" data-stack-card data-cursor-text="GITHUB">
+              <div class="work-card__media">
+                <img
+                  src="/works/work-quant-smc.jpg"
+                  alt="Frosted black glass topographic liquidity waves for Quantitative SMC Engine"
+                  loading="lazy"
+                  decoding="async"
+                  data-card-parallax
+                />
+                <span class="work-card__index mono-tag">04 / 04</span>
+              </div>
+              <div class="work-card__body">
+                <div class="work-card__meta mono-tag">
+                  <span>QUANTITATIVE FINANCE</span>
+                  <span>2026</span>
+                </div>
+                <h3 class="work-card__title">SMC Liquidity Telemetry</h3>
+                <p class="work-card__desc">Rule-based Smart Money Concepts telemetry &amp; asymmetric risk engine for XAUUSD and crypto.</p>
+                <div class="work-card__footer">
+                  <div class="work-card__tags mono-tag">
+                    <span>Python</span>
+                    <span>Orderflow</span>
+                    <span>1:2.5 RR</span>
+                  </div>
+                  <a
+                    href="https://github.com/zorafaizz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="work-card__link"
+                    data-magnetic
+                  >
+                    <span>Inspect</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M7 17 17 7m0 0H8m9 0v9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04. CRAFT — Interactive Three.js 3D Morphing Particle Sculpture -->
+      <section id="craft" class="craft-section" data-craft-section>
+        <div class="craft-canvas-wrap" aria-hidden="true">
+          <canvas id="craft-canvas" class="craft-canvas"></canvas>
+        </div>
+
+        <div class="container craft__layout">
+          <div class="craft__header" data-story-section>
+            <span class="mono-tag" data-reveal-item>03 / CORE CRAFT</span>
+            <h2 class="section-title" data-split-reveal>Four Pillars, <span class="serif-italic">One Kernel.</span></h2>
+          </div>
+
+          <div class="craft__list" role="tablist" aria-label="Engineering disciplines">
+            <button type="button" class="craft-row is-active" role="tab" aria-selected="true" data-morph-index="0">
+              <span class="craft-row__num mono-tag">01</span>
+              <span class="craft-row__name">AI &amp; Autonomous Agents</span>
+              <span class="craft-row__summary">Multi-model LLM routing, RAG pipelines &amp; 24/7 bot supervisors.</span>
+            </button>
+
+            <button type="button" class="craft-row" role="tab" aria-selected="false" data-morph-index="1">
+              <span class="craft-row__num mono-tag">02</span>
+              <span class="craft-row__name">Game Server Clusters</span>
+              <span class="craft-row__summary">Purpur/Folia architecture, JVM G1GC tuning &amp; anti-cheat defense.</span>
+            </button>
+
+            <button type="button" class="craft-row" role="tab" aria-selected="false" data-morph-index="2">
+              <span class="craft-row__num mono-tag">03</span>
+              <span class="craft-row__name">Network &amp; Security (TKJ)</span>
+              <span class="craft-row__summary">WireGuard kernel mesh, Unbound DoH &amp; hardened Linux servers.</span>
+            </button>
+
+            <button type="button" class="craft-row" role="tab" aria-selected="false" data-morph-index="3">
+              <span class="craft-row__num mono-tag">04</span>
+              <span class="craft-row__name">Quantitative Telemetry</span>
+              <span class="craft-row__summary">Institutional liquidity models, orderflow delta &amp; strict risk math.</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05. LIVE ECOSYSTEM INDEX — Minimal Hover-Slide Rows -->
+      <section id="index" class="index-section">
+        <div class="container">
+          <div class="section-head section-head--row" data-story-section>
+            <div>
+              <span class="mono-tag" data-reveal-item>04 / LIVE ECOSYSTEM</span>
+              <h2 class="section-title" data-split-reveal>Active <span class="serif-italic">Deployments.</span></h2>
+            </div>
+            <span class="mono-tag index-count" data-reveal-item>05 LIVE NODES</span>
+          </div>
+
+          <div class="index-list" data-story-section>
+            <a href="https://rayah.itsfaiz.my.id" target="_blank" rel="noopener noreferrer" class="index-row" data-reveal-item data-cursor-text="VISIT">
+              <span class="index-row__title">Rayah Control Studio</span>
+              <span class="index-row__cat mono-tag">DIAGNOSTICS &amp; DOWNLOADER</span>
+              <span class="index-row__arrow" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://api.itsfaiz.my.id" target="_blank" rel="noopener noreferrer" class="index-row" data-reveal-item data-cursor-text="VISIT">
+              <span class="index-row__title">Zora REST API</span>
+              <span class="index-row__cat mono-tag">EDGE GATEWAY</span>
+              <span class="index-row__arrow" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://portov2.itsfaiz.my.id" target="_blank" rel="noopener noreferrer" class="index-row" data-reveal-item data-cursor-text="VISIT">
+              <span class="index-row__title">Kinetic Physics Lab</span>
+              <span class="index-row__cat mono-tag">EXPERIMENT V2</span>
+              <span class="index-row__arrow" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://persona5.itsfaiz.my.id" target="_blank" rel="noopener noreferrer" class="index-row" data-reveal-item data-cursor-text="VISIT">
+              <span class="index-row__title">Phantom Archive</span>
+              <span class="index-row__cat mono-tag">STYLIZED INTERACTIVE</span>
+              <span class="index-row__arrow" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://portov3.itsfaiz.my.id" target="_blank" rel="noopener noreferrer" class="index-row" data-reveal-item data-cursor-text="VISIT">
+              <span class="index-row__title">Zora Studio CMS</span>
+              <span class="index-row__cat mono-tag">EDITION V3</span>
+              <span class="index-row__arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
       </section>
     </main>
-    <footer>© 2026 Sultan Faiz Ar Rasyid · Dibangun dengan Vite, Three.js, GSAP &amp; Lenis</footer>
+
+    <!-- 06. CINEMATIC PARALLAX FOOTER -->
+    <footer id="contact" class="site-footer" data-footer-parallax>
+      <div class="container footer__inner">
+        <div class="footer__top">
+          <span class="mono-tag">05 / INITIATE</span>
+          <span class="mono-tag">JAKARTA · UTC+7</span>
+        </div>
+
+        <div class="footer__hero">
+          <h2 class="footer__headline" data-split-reveal>
+            LET'S <span class="serif-italic">BUILD.</span>
+          </h2>
+          <a href="mailto:zora@itsfaiz.my.id" class="footer__email" data-magnetic>
+            <span>zora@itsfaiz.my.id</span>
+            <span class="footer__email-circle" aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div class="footer__bottom">
+          <div class="footer__socials">
+            <a href="https://github.com/zorafaizz" target="_blank" rel="noopener noreferrer" data-magnetic>GitHub</a>
+            <a href="https://t.me/zorafaizz" target="_blank" rel="noopener noreferrer" data-magnetic>Telegram</a>
+            <a href="https://itsfaiz.my.id" data-magnetic>itsfaiz.my.id</a>
+          </div>
+          <p class="footer__copy mono-tag">© 2026 SULTAN FAIZ AR RASYID</p>
+          <button type="button" class="footer__top-btn mono-tag" data-scroll-top data-magnetic>
+            TOP ↑
+          </button>
+        </div>
+      </div>
+    </footer>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

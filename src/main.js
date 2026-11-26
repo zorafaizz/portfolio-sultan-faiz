@@ -1,57 +1,57 @@
-import './style.css';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Lenis from 'lenis';
-import { createScene } from './scene.js';
-import { createInput } from './input.js';
-import { createDragon } from './dragon.js';
-import { createSpider } from './spider.js';
-import { createHero3D } from './hero3d.js';
+import './styles/main.css';
+import { initLandoPortrait } from './webgl/landoPortrait.js';
+import { initMorphStage } from './webgl/morphStage.js';
+import { initChoreography } from './motion/choreography.js';
 
-gsap.registerPlugin(ScrollTrigger);
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Lenis smooth scroll, terhubung ke ScrollTrigger
-const lenis = new Lenis({ lerp: 0.09 });
-lenis.on('scroll', ScrollTrigger.update);
-function rafLenis(time) { lenis.raf(time); requestAnimationFrame(rafLenis); }
-requestAnimationFrame(rafLenis);
+// 1. Hero Lando-Norris-style WebGL Fluid Portrait Reveal
+const portraitController = initLandoPortrait({
+  canvas: document.getElementById('portrait-canvas'),
+  stage: document.querySelector('[data-portrait-stage]'),
+  pulseButton: document.querySelector('[data-portrait-pulse]'),
+  reduceMotion,
+});
 
-// Anchor: pakai Lenis agar smooth
-document.querySelectorAll('a[href^="#"]').forEach((a) => {
-  a.addEventListener('click', (e) => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -70 }); }
+// 2. Interactive 3D Morphing Particle Sculpture (Craft Section)
+const morphController = initMorphStage({
+  canvas: document.getElementById('craft-canvas'),
+  section: document.querySelector('[data-craft-section]'),
+  reduceMotion,
+});
+
+// Bind discipline tabs to 3D particle morph targets
+const craftRows = Array.from(document.querySelectorAll('[data-morph-index]'));
+function activateCraft(index) {
+  craftRows.forEach((row, i) => {
+    const active = i === index;
+    row.classList.toggle('is-active', active);
+    row.setAttribute('aria-selected', String(active));
   });
+  morphController.setShape(index);
+}
+
+craftRows.forEach((row) => {
+  const idx = Number(row.dataset.morphIndex || 0);
+  row.addEventListener('pointerenter', () => activateCraft(idx));
+  row.addEventListener('focus', () => activateCraft(idx));
+  row.addEventListener('click', () => activateCraft(idx));
 });
 
-// Reveal section
-document.querySelectorAll('.reveal').forEach((el) => {
-  gsap.fromTo(el, { y: 40, opacity: 0 }, {
-    y: 0, opacity: 1, duration: 0.9, ease: 'power3.out',
-    scrollTrigger: { trigger: el, start: 'top 85%' },
-  });
+// 3. GSAP + ScrollTrigger + Lenis Motion System
+const motionController = initChoreography({
+  reduceMotion,
+  onHeroReady: () => {
+    // Fire a gentle subtle liquid wave right after preloader finishes so the effect is unmistakably alive
+    if (!reduceMotion) {
+      setTimeout(() => portraitController.triggerWave(), 240);
+    }
+  },
 });
 
-// Scene 3D
-const canvas = document.getElementById('scene3d');
-const { scene, camera, onUpdate } = createScene(canvas);
-const { pointer } = createInput(camera);
-const dragon = createDragon(scene, pointer);
-const spider = createSpider(scene, pointer);
-spider.setVisible(false);
-const hero3d = createHero3D(scene, camera, pointer);
-
-let mode = 'dragon';
-const toggle = document.getElementById('charToggle');
-toggle.addEventListener('click', () => {
-  mode = mode === 'dragon' ? 'spider' : 'dragon';
-  dragon.setVisible(mode === 'dragon');
-  spider.setVisible(mode === 'spider');
-  toggle.textContent = mode === 'dragon' ? 'Karakter: Naga 🐉' : 'Karakter: Laba-laba 🕷️';
-});
-
-onUpdate((dt, t) => {
-  hero3d.update(dt, t);
-  if (mode === 'dragon') dragon.update(dt);
-  else spider.update(dt, t);
+// Clean disposal on page unload
+window.addEventListener('pagehide', () => {
+  portraitController.dispose();
+  morphController.dispose();
+  motionController.dispose();
 });
