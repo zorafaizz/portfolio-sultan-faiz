@@ -10,22 +10,40 @@
     />
     <meta name="theme-color" content="#0A0B0A" />
     <meta property="og:title" content="Sultan Faiz — Systems, AI &amp; Kinetic Web" />
-    <meta
-      property="og:description"
-      content="Interactive kinetic portfolio of Sultan Faiz Ar Rasyid."
-    />
+    <meta property="og:description" content="Interactive kinetic portfolio of Sultan Faiz Ar Rasyid." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://itsfaiz.my.id" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600&family=Syne:wght@600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
-    <!-- Custom Cursor (pointer: fine only) -->
+    <!-- Global Scroll Progress Hairline -->
+    <div class="scroll-progress" aria-hidden="true">
+      <div class="scroll-progress__bar" data-scroll-progress></div>
+    </div>
+
+    <!-- Interactive Articulated IK Dragon & Spider Companion Layer -->
+    <canvas id="creature-canvas" class="creature-canvas" aria-hidden="true"></canvas>
+
+    <!-- Discreet Companion Switcher -->
+    <div class="creature-dock" role="group" aria-label="Interactive cursor companion">
+      <button type="button" class="creature-btn is-active" data-creature-mode="dragon" aria-pressed="true">
+        Dragon
+      </button>
+      <button type="button" class="creature-btn" data-creature-mode="spider" aria-pressed="false">
+        Spider
+      </button>
+      <button type="button" class="creature-btn" data-creature-mode="off" aria-pressed="false">
+        Off
+      </button>
+    </div>
+
+    <!-- Custom Cursor (fine pointers only) -->
     <div class="cursor" data-cursor aria-hidden="true">
       <div class="cursor__dot" data-cursor-dot></div>
       <div class="cursor__ring" data-cursor-ring>
@@ -33,61 +51,46 @@
       </div>
     </div>
 
-    <!-- Preloader -->
+    <!-- Cinematic Preloader -->
     <div class="preloader" data-preloader aria-hidden="true">
       <div class="preloader__inner">
-        <div class="preloader__top">
-          <span class="mono-tag">SULTAN FAIZ</span>
-          <span class="mono-tag">JAKARTA / ID</span>
-        </div>
-        <div class="preloader__center">
-          <span class="preloader__count" data-preloader-count>00</span>
-        </div>
+        <div class="preloader__brand">FAIZ<span>.</span></div>
         <div class="preloader__track">
           <div class="preloader__bar" data-preloader-bar></div>
         </div>
+        <div class="preloader__count" data-preloader-count>00</div>
       </div>
     </div>
 
-    <!-- Top Navigation -->
+    <!-- Minimal Floating Header -->
     <header class="site-header" data-header>
       <a class="brand" href="#hero" data-magnetic>
-        <span class="brand__mark">FAIZ</span><span class="brand__dot">.</span>
+        <span>FAIZ</span><span class="brand__dot">.</span>
       </a>
 
       <nav class="site-nav" aria-label="Primary">
         <a href="#work" class="nav-link" data-magnetic>Work</a>
         <a href="#craft" class="nav-link" data-magnetic>Craft</a>
-        <a href="#index" class="nav-link" data-magnetic>Index</a>
+        <a href="#journey" class="nav-link" data-magnetic>Journey</a>
+        <a href="#stack" class="nav-link" data-magnetic>Stack</a>
         <a href="#contact" class="nav-link" data-magnetic>Contact</a>
       </nav>
 
-      <div class="header-right">
-        <span class="live-clock mono-tag" data-jakarta-clock aria-label="Jakarta local time">JKT 00:00</span>
-        <a href="#contact" class="pill-cta" data-magnetic data-cursor-text="TALK">
-          <span class="pill-cta__dot" aria-hidden="true"></span>
-          <span>Let's Talk</span>
-        </a>
-      </div>
+      <a href="#contact" class="pill-cta" data-magnetic>
+        <span>Let's Talk</span>
+      </a>
     </header>
 
     <main id="smooth-content">
-      <!-- 01. HERO — Lando Norris-style WebGL Fluid Portrait Reveal -->
+      <!-- HERO — Lando Norris GPU Fluid Portrait Reveal -->
       <section id="hero" class="hero" data-hero>
-        <!-- Ambient Giant Back Typography (depth layer behind portrait) -->
         <div class="hero__backdrop" aria-hidden="true">
-          <div class="hero__wordmark hero__wordmark--back" data-hero-parallax="-0.12">
-            <span>SULTAN</span>
-          </div>
-          <div class="hero__grid-lines">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
+          <div class="hero__wordmark" data-hero-parallax="-0.12">FAIZ</div>
+          <div class="hero__ambient-glow"></div>
         </div>
 
-        <!-- Centerpiece Interactive WebGL Fluid Portrait Canvas -->
-        <div class="hero__stage" data-portrait-stage data-cursor-text="REVEAL">
+        <!-- Centerpiece GPU Ping-Pong Fluid Portrait Stage -->
+        <div class="hero__stage" data-portrait-stage>
           <canvas id="portrait-canvas" class="hero__canvas" aria-hidden="true"></canvas>
           <img
             src="/portrait.png"
@@ -100,38 +103,20 @@
           />
         </div>
 
-        <!-- Foreground Editorial Composition -->
         <div class="hero__foreground">
-          <div class="hero__top-meta" data-hero-enter>
-            <span class="mono-tag">00 / SYSTEMS &amp; KINETIC WEB</span>
-            <span class="mono-tag">AVAILABLE FOR SELECT WORK</span>
-          </div>
-
           <div class="hero__title-wrap">
             <h1 class="hero__title" data-hero-title>
-              <span class="hero__title-line">SULTAN FAIZ</span>
+              <span class="hero__title-line">Sultan Faiz</span>
               <span class="hero__title-line hero__title-line--italic">Ar Rasyid</span>
             </h1>
           </div>
 
           <div class="hero__bottom-bar" data-hero-enter>
             <p class="hero__disciplines">
-              AI Orchestration <span class="sep">/</span> Game Clusters <span class="sep">/</span> Network &amp; Quant
+              AI Systems <span class="sep">·</span> Game Clusters <span class="sep">·</span> Network &amp; Quant
             </p>
-
-            <button
-              type="button"
-              class="hero__reveal-hint mono-tag"
-              data-portrait-pulse
-              data-magnetic
-              aria-label="Trigger portrait fluid wave reveal"
-            >
-              <span class="hint-ring" aria-hidden="true"></span>
-              <span>SWEEP OR TAP TO REVEAL</span>
-            </button>
-
-            <a href="#manifesto" class="hero__scroll-cue mono-tag" data-magnetic>
-              <span>SCROLL</span>
+            <a href="#manifesto" class="hero__scroll-cue" data-magnetic aria-label="Scroll to overview">
+              <span>Explore</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M12 5v14m0 0-5-5m5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
@@ -140,62 +125,83 @@
         </div>
       </section>
 
-      <!-- 02. KINETIC MARQUEE + EDITORIAL BONE CONTRAST MANIFESTO -->
-      <section id="manifesto" class="manifesto-band" data-theme-light>
-        <!-- Velocity-Reactive Marquee -->
-        <div class="marquee" data-marquee aria-hidden="true">
-          <div class="marquee__track" data-marquee-track>
-            <div class="marquee__group">
-              <span>AI SYSTEMS</span><span class="marquee__dot">✦</span>
-              <span>20.0 TPS CLUSTERS</span><span class="marquee__dot">✦</span>
-              <span>WIREGUARD MESH</span><span class="marquee__dot">✦</span>
-              <span>WEBGL SHADERS</span><span class="marquee__dot">✦</span>
-              <span>QUANT TELEMETRY</span><span class="marquee__dot">✦</span>
+      <!-- VELOCITY DUAL MARQUEE + EDITORIAL BONE MANIFESTO -->
+      <section id="manifesto" class="manifesto-band">
+        <div class="marquee-stack" aria-hidden="true">
+          <div class="marquee">
+            <div class="marquee__track" data-marquee-track data-marquee-dir="1">
+              <div class="marquee__group">
+                <span>AI Orchestration</span><span class="marquee__dot">✦</span>
+                <span>20 TPS Clusters</span><span class="marquee__dot">✦</span>
+                <span>WireGuard Mesh</span><span class="marquee__dot">✦</span>
+                <span>WebGL &amp; GLSL</span><span class="marquee__dot">✦</span>
+                <span>Quant Telemetry</span><span class="marquee__dot">✦</span>
+              </div>
+              <div class="marquee__group">
+                <span>AI Orchestration</span><span class="marquee__dot">✦</span>
+                <span>20 TPS Clusters</span><span class="marquee__dot">✦</span>
+                <span>WireGuard Mesh</span><span class="marquee__dot">✦</span>
+                <span>WebGL &amp; GLSL</span><span class="marquee__dot">✦</span>
+                <span>Quant Telemetry</span><span class="marquee__dot">✦</span>
+              </div>
             </div>
-            <div class="marquee__group">
-              <span>AI SYSTEMS</span><span class="marquee__dot">✦</span>
-              <span>20.0 TPS CLUSTERS</span><span class="marquee__dot">✦</span>
-              <span>WIREGUARD MESH</span><span class="marquee__dot">✦</span>
-              <span>WEBGL SHADERS</span><span class="marquee__dot">✦</span>
-              <span>QUANT TELEMETRY</span><span class="marquee__dot">✦</span>
+          </div>
+
+          <div class="marquee marquee--subtle">
+            <div class="marquee__track" data-marquee-track data-marquee-dir="-1">
+              <div class="marquee__group">
+                <span>Linux Kernel</span><span class="marquee__dot">·</span>
+                <span>Rust &amp; Node.js</span><span class="marquee__dot">·</span>
+                <span>Purpur &amp; Folia</span><span class="marquee__dot">·</span>
+                <span>GSAP Choreography</span><span class="marquee__dot">·</span>
+                <span>Zero-Trust Routing</span><span class="marquee__dot">·</span>
+              </div>
+              <div class="marquee__group">
+                <span>Linux Kernel</span><span class="marquee__dot">·</span>
+                <span>Rust &amp; Node.js</span><span class="marquee__dot">·</span>
+                <span>Purpur &amp; Folia</span><span class="marquee__dot">·</span>
+                <span>GSAP Choreography</span><span class="marquee__dot">·</span>
+                <span>Zero-Trust Routing</span><span class="marquee__dot">·</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Sculptural Statement (Scroll-scrubbed word illumination) -->
         <div class="container manifesto__wrap">
-          <div class="manifesto__label mono-tag">01 / PHILOSOPHY</div>
           <p class="manifesto__statement" data-scrub-words>
-            I engineer autonomous systems that never blink — fusing low-level Linux networking, 20 TPS game engines, multi-model AI routers, and fluid interfaces built with zero excess.
+            I engineer autonomous systems built for real load — fusing Linux networking, 20 TPS game clusters, multi-model AI routers, and fluid web interfaces with zero excess.
           </p>
+
           <div class="manifesto__stats" data-story-section>
             <div class="stat-item" data-reveal-item>
-              <span class="stat-item__value">20.0</span>
-              <span class="stat-item__label mono-tag">CONSTANT TPS</span>
+              <span class="stat-item__value" data-count-to="20.0" data-decimals="1">20.0</span>
+              <span class="stat-item__label">Constant TPS</span>
             </div>
             <div class="stat-item" data-reveal-item>
-              <span class="stat-item__value">&lt;250ms</span>
-              <span class="stat-item__label mono-tag">LLM FAILOVER</span>
+              <span class="stat-item__value" data-count-to="250" data-prefix="<" data-suffix="ms">&lt;250ms</span>
+              <span class="stat-item__label">LLM Failover</span>
             </div>
             <div class="stat-item" data-reveal-item>
-              <span class="stat-item__value">99.98%</span>
-              <span class="stat-item__label mono-tag">CLUSTER UPTIME</span>
+              <span class="stat-item__value" data-count-to="99.98" data-decimals="2" data-suffix="%">99.98%</span>
+              <span class="stat-item__label">Cluster Uptime</span>
+            </div>
+            <div class="stat-item" data-reveal-item>
+              <span class="stat-item__value" data-count-to="45" data-suffix="+">45+</span>
+              <span class="stat-item__label">Shipped Repos</span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 03. SELECTED WORKS — Sticky Depth Card Stack -->
+      <!-- SELECTED WORKS — Sticky Depth Stack + 3D Tilt & Spotlight -->
       <section id="work" class="works-section">
         <div class="container">
           <div class="section-head" data-story-section>
-            <span class="mono-tag" data-reveal-item>02 / SELECTED WORKS</span>
-            <h2 class="section-title" data-split-reveal>Built to Run <span class="serif-italic">in Production.</span></h2>
+            <h2 class="section-title" data-split-reveal>Selected <span class="serif-italic">Works.</span></h2>
           </div>
 
           <div class="work-stack" data-sticky-stack>
-            <!-- Card 01 -->
-            <article class="work-card" data-stack-card data-cursor-text="OPEN">
+            <article class="work-card" data-stack-card data-tilt-card data-cursor-text="OPEN">
               <div class="work-card__media">
                 <img
                   src="/works/work-anime-engine.jpg"
@@ -204,30 +210,23 @@
                   decoding="async"
                   data-card-parallax
                 />
-                <span class="work-card__index mono-tag">01 / 04</span>
               </div>
               <div class="work-card__body">
-                <div class="work-card__meta mono-tag">
-                  <span>3D ENGINE &amp; MOCAP</span>
-                  <span>2026</span>
+                <div class="work-card__meta">
+                  <span>3D Engine &amp; Mocap</span>
+                  <span class="mono-meta">2026</span>
                 </div>
                 <h3 class="work-card__title">Web Anime Engine</h3>
                 <p class="work-card__desc">Browser-native 3D studio with real-time camera motion capture and custom shader pipelines.</p>
                 <div class="work-card__footer">
-                  <div class="work-card__tags mono-tag">
+                  <div class="work-card__tags mono-meta">
                     <span>Three.js</span>
                     <span>WebGL</span>
                     <span>Mocap</span>
                   </div>
-                  <a
-                    href="https://3d.itsfaiz.my.id"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="work-card__link"
-                    data-magnetic
-                  >
+                  <a href="https://3d.itsfaiz.my.id" target="_blank" rel="noopener noreferrer" class="work-card__link" data-magnetic>
                     <span>Launch</span>
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path d="M7 17 17 7m0 0H8m9 0v9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                   </a>
@@ -235,8 +234,7 @@
               </div>
             </article>
 
-            <!-- Card 02 -->
-            <article class="work-card" data-stack-card data-cursor-text="OPEN">
+            <article class="work-card" data-stack-card data-tilt-card data-cursor-text="OPEN">
               <div class="work-card__media">
                 <img
                   src="/works/work-zoraa-network.jpg"
@@ -245,30 +243,23 @@
                   decoding="async"
                   data-card-parallax
                 />
-                <span class="work-card__index mono-tag">02 / 04</span>
               </div>
               <div class="work-card__body">
-                <div class="work-card__meta mono-tag">
-                  <span>AUTONOMOUS AI</span>
-                  <span>2026</span>
+                <div class="work-card__meta">
+                  <span>Autonomous AI</span>
+                  <span class="mono-meta">2026</span>
                 </div>
                 <h3 class="work-card__title">Zoraa Living Network</h3>
                 <p class="work-card__desc">Multi-provider LLM router and autonomous agent runtime with sub-250ms failover.</p>
                 <div class="work-card__footer">
-                  <div class="work-card__tags mono-tag">
+                  <div class="work-card__tags mono-meta">
                     <span>FastAPI</span>
                     <span>Node.js</span>
                     <span>SQLite WAL</span>
                   </div>
-                  <a
-                    href="https://zoraa.itsfaiz.my.id"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="work-card__link"
-                    data-magnetic
-                  >
+                  <a href="https://zoraa.itsfaiz.my.id" target="_blank" rel="noopener noreferrer" class="work-card__link" data-magnetic>
                     <span>Explore</span>
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path d="M7 17 17 7m0 0H8m9 0v9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                   </a>
@@ -276,8 +267,7 @@
               </div>
             </article>
 
-            <!-- Card 03 -->
-            <article class="work-card" data-stack-card data-cursor-text="GITHUB">
+            <article class="work-card" data-stack-card data-tilt-card data-cursor-text="CODE">
               <div class="work-card__media">
                 <img
                   src="/works/work-game-cluster.jpg"
@@ -286,30 +276,23 @@
                   decoding="async"
                   data-card-parallax
                 />
-                <span class="work-card__index mono-tag">03 / 04</span>
               </div>
               <div class="work-card__body">
-                <div class="work-card__meta mono-tag">
-                  <span>GAME INFRASTRUCTURE</span>
-                  <span>2025</span>
+                <div class="work-card__meta">
+                  <span>Game Infrastructure</span>
+                  <span class="mono-meta">2025</span>
                 </div>
                 <h3 class="work-card__title">Minecraft 20 TPS Engine</h3>
                 <p class="work-card__desc">High-concurrency Purpur &amp; Folia clusters tuned with Aikar JVM flags, Redis, and GrimAC.</p>
                 <div class="work-card__footer">
-                  <div class="work-card__tags mono-tag">
+                  <div class="work-card__tags mono-meta">
                     <span>Java 21</span>
                     <span>Folia</span>
                     <span>Redis</span>
                   </div>
-                  <a
-                    href="https://github.com/zorafaizz"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="work-card__link"
-                    data-magnetic
-                  >
-                    <span>Architecture</span>
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <a href="https://github.com/zorafaizz" target="_blank" rel="noopener noreferrer" class="work-card__link" data-magnetic>
+                    <span>Inspect</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path d="M7 17 17 7m0 0H8m9 0v9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                   </a>
@@ -317,8 +300,7 @@
               </div>
             </article>
 
-            <!-- Card 04 -->
-            <article class="work-card" data-stack-card data-cursor-text="GITHUB">
+            <article class="work-card" data-stack-card data-tilt-card data-cursor-text="CODE">
               <div class="work-card__media">
                 <img
                   src="/works/work-quant-smc.jpg"
@@ -327,30 +309,23 @@
                   decoding="async"
                   data-card-parallax
                 />
-                <span class="work-card__index mono-tag">04 / 04</span>
               </div>
               <div class="work-card__body">
-                <div class="work-card__meta mono-tag">
-                  <span>QUANTITATIVE FINANCE</span>
-                  <span>2026</span>
+                <div class="work-card__meta">
+                  <span>Quantitative Finance</span>
+                  <span class="mono-meta">2026</span>
                 </div>
                 <h3 class="work-card__title">SMC Liquidity Telemetry</h3>
                 <p class="work-card__desc">Rule-based Smart Money Concepts telemetry &amp; asymmetric risk engine for XAUUSD and crypto.</p>
                 <div class="work-card__footer">
-                  <div class="work-card__tags mono-tag">
+                  <div class="work-card__tags mono-meta">
                     <span>Python</span>
                     <span>Orderflow</span>
                     <span>1:2.5 RR</span>
                   </div>
-                  <a
-                    href="https://github.com/zorafaizz"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="work-card__link"
-                    data-magnetic
-                  >
+                  <a href="https://github.com/zorafaizz" target="_blank" rel="noopener noreferrer" class="work-card__link" data-magnetic>
                     <span>Inspect</span>
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path d="M7 17 17 7m0 0H8m9 0v9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                   </a>
@@ -361,7 +336,7 @@
         </div>
       </section>
 
-      <!-- 04. CRAFT — Interactive Three.js 3D Morphing Particle Sculpture -->
+      <!-- CORE CRAFT — Three.js Interactive 3D Morphing Particle Sculpture -->
       <section id="craft" class="craft-section" data-craft-section>
         <div class="craft-canvas-wrap" aria-hidden="true">
           <canvas id="craft-canvas" class="craft-canvas"></canvas>
@@ -369,31 +344,26 @@
 
         <div class="container craft__layout">
           <div class="craft__header" data-story-section>
-            <span class="mono-tag" data-reveal-item>03 / CORE CRAFT</span>
             <h2 class="section-title" data-split-reveal>Four Pillars, <span class="serif-italic">One Kernel.</span></h2>
           </div>
 
           <div class="craft__list" role="tablist" aria-label="Engineering disciplines">
             <button type="button" class="craft-row is-active" role="tab" aria-selected="true" data-morph-index="0">
-              <span class="craft-row__num mono-tag">01</span>
               <span class="craft-row__name">AI &amp; Autonomous Agents</span>
               <span class="craft-row__summary">Multi-model LLM routing, RAG pipelines &amp; 24/7 bot supervisors.</span>
             </button>
 
             <button type="button" class="craft-row" role="tab" aria-selected="false" data-morph-index="1">
-              <span class="craft-row__num mono-tag">02</span>
               <span class="craft-row__name">Game Server Clusters</span>
               <span class="craft-row__summary">Purpur/Folia architecture, JVM G1GC tuning &amp; anti-cheat defense.</span>
             </button>
 
             <button type="button" class="craft-row" role="tab" aria-selected="false" data-morph-index="2">
-              <span class="craft-row__num mono-tag">03</span>
-              <span class="craft-row__name">Network &amp; Security (TKJ)</span>
+              <span class="craft-row__name">Network &amp; Security</span>
               <span class="craft-row__summary">WireGuard kernel mesh, Unbound DoH &amp; hardened Linux servers.</span>
             </button>
 
             <button type="button" class="craft-row" role="tab" aria-selected="false" data-morph-index="3">
-              <span class="craft-row__num mono-tag">04</span>
               <span class="craft-row__name">Quantitative Telemetry</span>
               <span class="craft-row__summary">Institutional liquidity models, orderflow delta &amp; strict risk math.</span>
             </button>
@@ -401,41 +371,157 @@
         </div>
       </section>
 
-      <!-- 05. LIVE ECOSYSTEM INDEX — Minimal Hover-Slide Rows -->
+      <!-- JOURNEY — Horizontal Scrubbed Scroll Gallery -->
+      <section id="journey" class="journey-section" data-horizontal-section>
+        <div class="journey__sticky">
+          <div class="container journey__top">
+            <h2 class="section-title" data-split-reveal>Architectural <span class="serif-italic">Journey.</span></h2>
+            <div class="journey__progress-track" aria-hidden="true">
+              <div class="journey__progress-fill" data-horizontal-bar></div>
+            </div>
+          </div>
+
+          <div class="journey__viewport">
+            <div class="journey__track" data-horizontal-track>
+              <article class="epoch-card" data-spotlight-card>
+                <span class="epoch-card__year mono-meta">2022</span>
+                <h3 class="epoch-card__title">TKJ &amp; Linux Kernel</h3>
+                <p class="epoch-card__desc">MikroTik routing, Cisco VLAN topologies, iptables hardening, and bare-metal Debian/Ubuntu servers.</p>
+                <div class="epoch-card__tags mono-meta">
+                  <span>MikroTik</span>
+                  <span>Cisco IOS</span>
+                  <span>iptables</span>
+                </div>
+              </article>
+
+              <article class="epoch-card" data-spotlight-card>
+                <span class="epoch-card__year mono-meta">2023</span>
+                <h3 class="epoch-card__title">Minecraft 20 TPS Clusters</h3>
+                <p class="epoch-card__desc">Multi-threaded Paper/Purpur/Folia architectures, Aikar G1GC memory tuning, Redis &amp; MariaDB persistence.</p>
+                <div class="epoch-card__tags mono-meta">
+                  <span>Java 21</span>
+                  <span>Folia</span>
+                  <span>Redis</span>
+                </div>
+              </article>
+
+              <article class="epoch-card" data-spotlight-card>
+                <span class="epoch-card__year mono-meta">2024</span>
+                <h3 class="epoch-card__title">Autonomous AI Routers</h3>
+                <p class="epoch-card__desc">Multi-provider LLM gateways with automatic key rotation, sub-250ms failover, and dual-core bot supervisors.</p>
+                <div class="epoch-card__tags mono-meta">
+                  <span>Node.js</span>
+                  <span>Python</span>
+                  <span>SQLite WAL</span>
+                </div>
+              </article>
+
+              <article class="epoch-card" data-spotlight-card>
+                <span class="epoch-card__year mono-meta">2025 — 2026</span>
+                <h3 class="epoch-card__title">Quant SMC &amp; Zero-Trust</h3>
+                <p class="epoch-card__desc">WireGuard kernel mesh, Unbound DoH privacy resolvers, institutional liquidity mapping, and WebGL kinetic interfaces.</p>
+                <div class="epoch-card__tags mono-meta">
+                  <span>WireGuard</span>
+                  <span>Rust</span>
+                  <span>Three.js</span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TECH STACK — Interactive Spotlight Matrix -->
+      <section id="stack" class="stack-section">
+        <div class="container">
+          <div class="section-head" data-story-section>
+            <h2 class="section-title" data-split-reveal>Core <span class="serif-italic">Arsenal.</span></h2>
+          </div>
+
+          <div class="stack-grid" data-story-section>
+            <div class="stack-tile" data-reveal-item data-spotlight-card>
+              <span class="stack-tile__name">JavaScript / TS</span>
+              <span class="stack-tile__role">Reactive UI &amp; WebGL</span>
+            </div>
+            <div class="stack-tile" data-reveal-item data-spotlight-card>
+              <span class="stack-tile__name">Node.js 22</span>
+              <span class="stack-tile__role">Async Gateways</span>
+            </div>
+            <div class="stack-tile" data-reveal-item data-spotlight-card>
+              <span class="stack-tile__name">Rust</span>
+              <span class="stack-tile__role">Concurrent Systems</span>
+            </div>
+            <div class="stack-tile" data-reveal-item data-spotlight-card>
+              <span class="stack-tile__name">Java 21 LTS</span>
+              <span class="stack-tile__role">JVM &amp; Folia Clusters</span>
+            </div>
+            <div class="stack-tile" data-reveal-item data-spotlight-card>
+              <span class="stack-tile__name">Python 3.12</span>
+              <span class="stack-tile__role">LLM &amp; Quant Pipelines</span>
+            </div>
+            <div class="stack-tile" data-reveal-item data-spotlight-card>
+              <span class="stack-tile__name">Three.js &amp; GLSL</span>
+              <span class="stack-tile__role">Custom Shaders</span>
+            </div>
+            <div class="stack-tile" data-reveal-item data-spotlight-card>
+              <span class="stack-tile__name">GSAP &amp; Lenis</span>
+              <span class="stack-tile__role">Scroll Choreography</span>
+            </div>
+            <div class="stack-tile" data-reveal-item data-spotlight-card>
+              <span class="stack-tile__name">WireGuard &amp; DoH</span>
+              <span class="stack-tile__role">Zero-Trust Mesh</span>
+            </div>
+            <div class="stack-tile" data-reveal-item data-spotlight-card>
+              <span class="stack-tile__name">Linux &amp; Caddy</span>
+              <span class="stack-tile__role">Hardened Infra</span>
+            </div>
+            <div class="stack-tile" data-reveal-item data-spotlight-card>
+              <span class="stack-tile__name">Docker</span>
+              <span class="stack-tile__role">Isolated Runtimes</span>
+            </div>
+            <div class="stack-tile" data-reveal-item data-spotlight-card>
+              <span class="stack-tile__name">Redis &amp; Postgres</span>
+              <span class="stack-tile__role">Low-Latency State</span>
+            </div>
+            <div class="stack-tile" data-reveal-item data-spotlight-card>
+              <span class="stack-tile__name">SQLite WAL</span>
+              <span class="stack-tile__role">Embedded Persistence</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LIVE DEPLOYMENTS — Minimal Hover-Slide List -->
       <section id="index" class="index-section">
         <div class="container">
-          <div class="section-head section-head--row" data-story-section>
-            <div>
-              <span class="mono-tag" data-reveal-item>04 / LIVE ECOSYSTEM</span>
-              <h2 class="section-title" data-split-reveal>Active <span class="serif-italic">Deployments.</span></h2>
-            </div>
-            <span class="mono-tag index-count" data-reveal-item>05 LIVE NODES</span>
+          <div class="section-head" data-story-section>
+            <h2 class="section-title" data-split-reveal>Live <span class="serif-italic">Deployments.</span></h2>
           </div>
 
           <div class="index-list" data-story-section>
             <a href="https://rayah.itsfaiz.my.id" target="_blank" rel="noopener noreferrer" class="index-row" data-reveal-item data-cursor-text="VISIT">
               <span class="index-row__title">Rayah Control Studio</span>
-              <span class="index-row__cat mono-tag">DIAGNOSTICS &amp; DOWNLOADER</span>
+              <span class="index-row__cat">Diagnostics &amp; Downloader</span>
               <span class="index-row__arrow" aria-hidden="true">↗</span>
             </a>
             <a href="https://api.itsfaiz.my.id" target="_blank" rel="noopener noreferrer" class="index-row" data-reveal-item data-cursor-text="VISIT">
               <span class="index-row__title">Zora REST API</span>
-              <span class="index-row__cat mono-tag">EDGE GATEWAY</span>
+              <span class="index-row__cat">Edge Gateway</span>
               <span class="index-row__arrow" aria-hidden="true">↗</span>
             </a>
             <a href="https://portov2.itsfaiz.my.id" target="_blank" rel="noopener noreferrer" class="index-row" data-reveal-item data-cursor-text="VISIT">
               <span class="index-row__title">Kinetic Physics Lab</span>
-              <span class="index-row__cat mono-tag">EXPERIMENT V2</span>
+              <span class="index-row__cat">Edition V2</span>
               <span class="index-row__arrow" aria-hidden="true">↗</span>
             </a>
             <a href="https://persona5.itsfaiz.my.id" target="_blank" rel="noopener noreferrer" class="index-row" data-reveal-item data-cursor-text="VISIT">
               <span class="index-row__title">Phantom Archive</span>
-              <span class="index-row__cat mono-tag">STYLIZED INTERACTIVE</span>
+              <span class="index-row__cat">Interactive Edition</span>
               <span class="index-row__arrow" aria-hidden="true">↗</span>
             </a>
             <a href="https://portov3.itsfaiz.my.id" target="_blank" rel="noopener noreferrer" class="index-row" data-reveal-item data-cursor-text="VISIT">
               <span class="index-row__title">Zora Studio CMS</span>
-              <span class="index-row__cat mono-tag">EDITION V3</span>
+              <span class="index-row__cat">Edition V3</span>
               <span class="index-row__arrow" aria-hidden="true">↗</span>
             </a>
           </div>
@@ -443,17 +529,12 @@
       </section>
     </main>
 
-    <!-- 06. CINEMATIC PARALLAX FOOTER -->
+    <!-- CINEMATIC PARALLAX FOOTER -->
     <footer id="contact" class="site-footer" data-footer-parallax>
       <div class="container footer__inner">
-        <div class="footer__top">
-          <span class="mono-tag">05 / INITIATE</span>
-          <span class="mono-tag">JAKARTA · UTC+7</span>
-        </div>
-
         <div class="footer__hero">
           <h2 class="footer__headline" data-split-reveal>
-            LET'S <span class="serif-italic">BUILD.</span>
+            Let's <span class="serif-italic">Build.</span>
           </h2>
           <a href="mailto:zora@itsfaiz.my.id" class="footer__email" data-magnetic>
             <span>zora@itsfaiz.my.id</span>
@@ -467,9 +548,9 @@
             <a href="https://t.me/zorafaizz" target="_blank" rel="noopener noreferrer" data-magnetic>Telegram</a>
             <a href="https://itsfaiz.my.id" data-magnetic>itsfaiz.my.id</a>
           </div>
-          <p class="footer__copy mono-tag">© 2026 SULTAN FAIZ AR RASYID</p>
-          <button type="button" class="footer__top-btn mono-tag" data-scroll-top data-magnetic>
-            TOP ↑
+          <p class="footer__copy">© 2026 Sultan Faiz Ar Rasyid</p>
+          <button type="button" class="footer__top-btn" data-scroll-top data-magnetic>
+            Back to top ↑
           </button>
         </div>
       </div>
